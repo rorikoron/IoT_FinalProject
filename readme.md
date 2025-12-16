@@ -53,6 +53,8 @@
 
 當有中獎時使用 SMTP 傳送 email 到信箱，提醒使用者記得保留及兌獎。
 此部分重複利用我以前寫的程式。
+![20251215_233949](https://github.com/user-attachments/assets/03fc5a60-2023-4b57-a214-4d48ca504aaa)
+![20251215_233953](https://github.com/user-attachments/assets/77bf3373-13c1-4766-9998-04bafec924b9)
 
 ## Getting Started
 
