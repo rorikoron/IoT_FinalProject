@@ -2,6 +2,8 @@
 
 此專案乃使用樹梅派自動兌獎發票的機器。
 專案由樹梅派、Supabase 組成。處裡分為兩階段。
+<img width="2200" height="1800" alt="image" src="https://github.com/user-attachments/assets/78b8db07-3452-4fc2-85d0-ac10a4601326" />
+
 一: 每隔十秒取得相機的影像，傳至 LLM 做 OCR 後存在 Supabase
 二: 在本機使用 cron 每天取得正確的中獎號碼，與 Supabase 中的所有儲存的號碼。
 
