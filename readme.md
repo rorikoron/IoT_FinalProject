@@ -20,8 +20,39 @@
    ↑ (daily cron)
 [Invoice Checker]
    ↓
-[Winning Receipt Image Output]
+[Winning Receipt Email sending]
 ```
+
+### Step 1. Camera
+
+使用 gpiozero 程式控制外接相機，每隔十秒拍照。
+此部分使用 picamera2
+
+### Step 2. Frame Differencing
+
+為了不要浪費 API token，使用 openCV 去觀察兩圖片的差異。如果差異太小就不要執行後面處裡。
+此部分重複利用我以前寫的程式。
+
+### Step 3. LLM OCR
+
+這次使用 Gemini 去做 OCR。原因可分為 1.想測試看看相較於傳統 OCR 技術的優劣，探索 LLMOCR 的可能性。 2.這次準確率不是 Critical(兌獎是每一天執行)
+這兩項，於是使用 AI~~偷懶~~有效率開發。
+
+### Step 4. 上傳到資料庫
+
+要件為 1.可以輕易上下傳資料(RESTful 為佳)
+2.RDBMS 3.有 Python SDK(Library)
+所以使用 Supabase(上次黑客松使用感不錯)
+
+### Step 5. 中獎確認
+
+由於政府沒有提供 API 取得當月中獎號碼，使用 beautiful soup 爬蟲取得月份與中獎號碼。
+上述程式使用 linux 的 cronjob 每一天執行並從 Supabase 取得所有資料對號碼。
+
+### Step 6. Email 傳送
+
+當有中獎時使用 SMTP 傳送 email 到信箱，提醒使用者記得保留及兌獎。
+此部分重複利用我以前寫的程式。
 
 ## Getting Started
 
@@ -39,7 +70,7 @@ pip3 install python-dotenv opencv-python numpy requests supabase picamera2
 python3 ./main.py
 ```
 
-## Cron Check
+## Cron Setup
 
 1. OS setup
 
